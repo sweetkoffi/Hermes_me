@@ -1,7 +1,34 @@
 import re
 import requests
 from bs4 import BeautifulSoup
+#########################################################HEADER
 
+logo = ''' _   _                                ___  ___     
+| | | |                               |  \/  |     
+| |_| | ___ _ __ _ __ ___   ___  ___  | .  . | ___ 
+|  _  |/ _ \ '__| '_ ` _ \ / _ \/ __| | |\/| |/ _ \\
+| | | |  __/ |  | | | | | |  __/\__ \ | |  | |  __/
+\_| |_/\___|_|  |_| |_| |_|\___||___/ \_|  |_/\___|
+                                  ______           
+                                 |______|'''
+
+# Determine the width of the rectangle
+lines = logo.split("\n")
+width = max(len(line) for line in lines)
+
+# Create the top and bottom borders of the rectangle
+top_border = "+" + "-" * (width + 2) + "+"
+bottom_border = "+" + "-" * (width + 2) + "+"
+
+# Print the ASCII rectangle art
+print(top_border)
+for line in lines:
+    padding = " " * (width - len(line))
+    print("| " + line + padding + " |")
+print(bottom_border)
+
+
+#########################################################HEADER
 # Source Radio Canada
 sourceRC = requests.get('https://ici.radio-canada.ca/info/en-continu').text
 # Source Les Affaires
@@ -62,6 +89,7 @@ def search_keyword_in_source(source, keyword, source_type):
             print("LES AFFAIRES")
             print("Nothing found")
             print('-' * 30)
+
 
 keyword = input("Entrez le keyword :")
 search_keyword_in_source(sourceAff, keyword, "Aff")
